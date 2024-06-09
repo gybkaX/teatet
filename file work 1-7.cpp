@@ -1,3 +1,6 @@
+#define _CRT_SECURE_NO_DEPRECATE
+#define _CRT_NONSTDC_NO_DEPRECATE
+#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
@@ -118,21 +121,31 @@ void deleteTransfer() {
 }
 
 void binarRead() {
-	/*
-	char data[9] { "0PQRSTUV" };
-	ofstream file("test.bin", ios_base::binary);
-	file.write((char*)&data, sizeof(string));
-	file.close();
-	*/
-	int temp;
-	ifstream file("test.bin", ios_base::binary);
-	file.read((char*)&temp, sizeof(int));
-	cout << temp << "\t";
-	file.close();
+	FILE* fr;
+	int data[100];
+	size_t bytesRead;
+	// Open the file in binary read mode
+	fr = fopen("data.bin", "rb");
+	if (fr == NULL) {
+		perror("Error opening file");
+	}
+	// Read data from the file into the array
+	bytesRead = fread(data, sizeof(int), 100, fr);
+	if (ferror(fr)) {
+		perror("Error reading file");
+		fclose(fr);
+	}
+	// Close the file
+	fclose(fr);
+	// Output the read data to the console
+	for (size_t i = 0; i < bytesRead; i++) {
+		printf("%d", data[i]);
+		if (i < bytesRead - 1) {
+			printf(" ");
+		}
+	}
+	printf("\n");
 
-	/*
-	* незнаю как в чем смысл задачи как и 8 
-	*/
 }
 
 struct box {
@@ -142,8 +155,8 @@ struct box {
 	int h;
 };
 int main() {
-
-
+	binarRead();
+	
 	/*
 	* «адание 6
 	* 
