@@ -121,6 +121,17 @@ void deleteTransfer() {
 }
 
 void binarRead() {
+	/*
+	* Создание файла так в случае если его нету ниже
+	* Написал опять же на ++ та как проще
+	* а ниже прогу саму не понял как написать на си
+	* 
+	char data[9] { "0PQRSTUV" };
+	ofstream file("data.bin", ios_base::binary);
+	file.write((char*)&data, sizeof(string));
+	file.close();
+	*/
+
 	FILE* fr;
 	int data[100];
 	size_t bytesRead;
@@ -156,7 +167,6 @@ struct box {
 };
 int main() {
 	binarRead();
-	
 	/*
 	* Задание 6
 	* 
