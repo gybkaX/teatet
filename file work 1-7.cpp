@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <fstream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -15,6 +16,12 @@ void createFile() {
 	file << "abcd";
 	file.close();
 
+}
+void createBin() {
+	char data[9]{ "0PQRSTUV" };
+	ofstream file("data.bin", ios_base::binary);
+	file.write((char*)&data, sizeof(string));
+	file.close();
 }
 void testOpen() {
 	ifstream file("test.dat");
@@ -98,66 +105,23 @@ void addArray() {
 
 void deleteTransfer() {
 	setlocale(LC_ALL, "Russian");
-	char ch;
 	string line;
-	string text[5];
+	vector <string> text;
 	int i = 0;
-	int maxLine = 5;
 	ifstream file("test.dat");
 	if (file.is_open() == true) {
 		while (!file.eof()) {
-			for (i = 0; i < maxLine; i++) {
-				getline(file, line);
-				text[i] = line;
-			}
+			getline(file, line);
+			text.push_back(line);
+			i++;
 		}
-		cout << text[1];
-		// проверка на то что знака переноса нет
-		cout << " test" << "\n\n";
+		int maxLine = text.size();
 		for (i = 0; i < maxLine; i++) {
 			cout << text[i] << endl;
 		}
 	}
 }
 
-void binarRead() {
-	/*
-	* Создание файла так в случае если его нету ниже
-	* Написал опять же на ++ та как проще
-	* а ниже прогу саму не понял как написать на си
-	* 
-	char data[9] { "0PQRSTUV" };
-	ofstream file("data.bin", ios_base::binary);
-	file.write((char*)&data, sizeof(string));
-	file.close();
-	*/
-
-	FILE* fr;
-	int data[100];
-	size_t bytesRead;
-	// Open the file in binary read mode
-	fr = fopen("data.bin", "rb");
-	if (fr == NULL) {
-		perror("Error opening file");
-	}
-	// Read data from the file into the array
-	bytesRead = fread(data, sizeof(int), 100, fr);
-	if (ferror(fr)) {
-		perror("Error reading file");
-		fclose(fr);
-	}
-	// Close the file
-	fclose(fr);
-	// Output the read data to the console
-	for (size_t i = 0; i < bytesRead; i++) {
-		printf("%d", data[i]);
-		if (i < bytesRead - 1) {
-			printf(" ");
-		}
-	}
-	printf("\n");
-
-}
 
 struct box {
 	int id;
@@ -166,7 +130,7 @@ struct box {
 	int h;
 };
 int main() {
-	binarRead();
+	deleteTransfer();
 	/*
 	* Задание 6
 	* 
