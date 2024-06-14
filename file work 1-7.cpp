@@ -1,3 +1,4 @@
+/*
 #define _CRT_SECURE_NO_DEPRECATE
 #define _CRT_NONSTDC_NO_DEPRECATE
 #define _CRT_SECURE_NO_WARNINGS
@@ -131,6 +132,7 @@ struct box {
 };
 int main() {
 	deleteTransfer();
+	*/
 	/*
 	* Задание 6
 	* 
@@ -160,4 +162,4 @@ int main() {
 	cout << box.d;
 
 	*/
-}
+//}
