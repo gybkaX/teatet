@@ -1,0 +1,78 @@
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+
+using namespace std;
+
+
+string perevod(int b, int n) {
+    // n это число в 10 b система в которую нужно перевести
+
+    string result = "";
+
+    for (int i = 0; n > 0; i++) {
+        if (10 == b) {
+            result = result;
+            break;
+        }
+
+        else {
+            if (n % b > 9) {
+                result = char('A' + (n % b) - 10) + result;
+            }
+            else {
+                result = char((n % b) + '0') + result;
+            }
+        }
+
+        n /= b;
+    }
+
+    return result;
+}
+
+string desiti(string num, int a) {
+    char z;
+    int x;
+    int result = 0;
+    if (a == 10) {
+        return num;
+    }
+    else {
+        for (int i = 0; i <= num.length(); i++) {
+            z = num[i];
+            x = z;
+            cout << x;
+            int step = num.length() - i;
+            if ((z >= '0') && (z <= '9')) {
+                result = result + z * (pow(a, num.length() - i));
+            }
+            else {
+                result = result + (z-65) * (pow(a, num.length() - i));
+            }
+            result;
+        }
+    }
+}
+
+
+
+int main()
+{
+    /*
+    string Num;
+    char Z;
+    int A, B, Result;
+    cout << "Vvedi Sistem iz kakaoi\n";
+    cin >> A;
+    cout << "V kakiy?\n";
+    cin >> B;
+    cout << "Chislo?\n";
+    cin >> Num;
+    for (int i = 0; i < Num.length(); i++) {
+        Z = Num[i];
+        cout << Z << "\t";
+    }
+    */
+    desiti("3", 16);
+}
